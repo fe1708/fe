@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "41910108979",
+    "firebase_url": "https://tenisu-booking-default-rtdb.firebaseio.com",
+    "project_id": "tenisu-booking",
+    "storage_bucket": "tenisu-booking.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41910108979:android:31c1d5e8667f98e68e7446",
+        "android_client_info": {
+          "package_name": "com.example.fe_tennisbooking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "41910108979-juhp95nr5nf5vg67mhcsdmjt1pt64t71.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_HRLOuC6-kNu04WzjFjxC1flaEJyhIQc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "41910108979-juhp95nr5nf5vg67mhcsdmjt1pt64t71.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
