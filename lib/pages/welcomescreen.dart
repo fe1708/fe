@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:footer/footer.dart';
-import 'package:footer/footer_view.dart';
-
-import 'components/app_bar.dart';
+import 'package:intl/intl.dart';
 
 class Welcomescreen extends StatefulWidget {
   const Welcomescreen({Key? key}) : super(key: key);
@@ -13,6 +10,7 @@ class Welcomescreen extends StatefulWidget {
 
 class _WelcomescreenState extends State<Welcomescreen> {
   DateTime selectedDate = DateTime.now();
+  DateFormat formatter = DateFormat('dd/MM/yyyy');
 
   var dateCtl = TextEditingController();
 
@@ -26,7 +24,7 @@ class _WelcomescreenState extends State<Welcomescreen> {
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
-        dateCtl.text = picked.toString();
+        dateCtl.text = formatter.format(picked);
       });
     }
   }
@@ -34,134 +32,86 @@ class _WelcomescreenState extends State<Welcomescreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            SizedBox(
-              width: double.infinity,
-              child: Image.asset(
-                "assets/images/Tennisbg.jpg",
-                fit: BoxFit.fill,
-              ),
-            ),
-            FooterView(
-              footer: Footer(
-                padding: const EdgeInsets.all(0),
-                child: Container(
-                  color: Colors.green.shade500,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text("FPT Ho Chi Minh campus"),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            child: Icon(
-                              Icons.sports_tennis_outlined,
-                              size: 30,
-                            ),
+    return SizedBox(
+      height: 300,
+      width: 700,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(50),
+        child: Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            title: const Text("Court"),
+          ),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: 250,
+                      height: 50,
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Location...',
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                const BorderSide(width: 3, color: Colors.blue),
+                            borderRadius: BorderRadius.circular(15),
                           ),
-                          Text("Contact us: 0123456789"),
-                        ],
-                      ),
-                      const Text("Team 1-SWD391-2022   All rights reserved"),
-                    ],
-                  ),
-                ),
-              ),
-              flex: 1,
-              children: const [],
-            ),
-            Center(
-              child: SizedBox(
-                height: 300,
-                width: 700,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: Scaffold(
-                    appBar: AppBar(
-                      automaticallyImplyLeading: false,
-                      title: const Text("Court"),
-                    ),
-                    body: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                width: 250,
-                                height: 50,
-                                child: TextField(
-                                  decoration: InputDecoration(
-                                    hintText: 'Location...',
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                          width: 3, color: Colors.blue),
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                          width: 3, color: Colors.red),
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(width: 50),
-                              SizedBox(
-                                width: 180,
-                                height: 50,
-                                child: TextField(
-                                  controller: dateCtl,
-                                  decoration: InputDecoration(
-                                    hintText: 'dd/mm/yy',
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                          width: 3, color: Colors.blue),
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                          width: 3, color: Colors.red),
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
-                                    suffixIcon: IconButton(
-                                      onPressed: () {
-                                        _selectDate(context);
-                                        print(selectedDate);
-                                      },
-                                      icon: const Icon(
-                                        Icons.date_range_outlined,
-                                        color: Colors.blue,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 50,
-                              ),
-                              ElevatedButton(
-                                  onPressed: () {}, child: const Text("Find"))
-                            ],
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                const BorderSide(width: 3, color: Colors.red),
+                            borderRadius: BorderRadius.circular(15),
                           ),
                         ),
-                        const SizedBox(height: 40)
-                      ],
+                      ),
                     ),
-                  ),
+                    const SizedBox(width: 50),
+                    SizedBox(
+                      width: 180,
+                      height: 50,
+                      child: TextField(
+                        controller: dateCtl,
+                        textAlign: TextAlign.center,
+                        decoration: InputDecoration(
+                          hintText: 'dd/mm/yy',
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                const BorderSide(width: 3, color: Colors.blue),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                const BorderSide(width: 3, color: Colors.red),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              _selectDate(context);
+                              print(selectedDate);
+                            },
+                            icon: const Icon(
+                              Icons.date_range_outlined,
+                              color: Colors.blue,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 50,
+                    ),
+                    ElevatedButton(onPressed: () {}, child: const Text("Find"))
+                  ],
                 ),
               ),
-            ),
-          ],
+              const SizedBox(height: 40)
+            ],
+          ),
         ),
       ),
-      appBar: const AppBarComponent(),
     );
   }
 }

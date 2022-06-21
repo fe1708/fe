@@ -1,24 +1,25 @@
+import 'package:fe_tennisbooking/general/general_provider.dart';
 import 'package:fe_tennisbooking/pages/welcomescreen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../home.dart';
-import '../signup.dart';
+import '../pages/home.dart';
+import '../pages/signup.dart';
 
-class AppBarComponent extends StatelessWidget with PreferredSizeWidget {
+class AppBarComponent extends ConsumerWidget with PreferredSizeWidget {
   const AppBarComponent({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    Size size = MediaQuery.of(context).size;
     return AppBar(
       automaticallyImplyLeading: false,
       backgroundColor: const Color.fromARGB(255, 81, 145, 83),
       title: GestureDetector(
         onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const Welcomescreen(),
-              ));
+          ref.read(pageProvider.notifier).state = const Welcomescreen(
+            key: Key('welcome'),
+          );
         },
         child: const Text(
           "Tenisu",
@@ -29,11 +30,9 @@ class AppBarComponent extends StatelessWidget with PreferredSizeWidget {
       actions: [
         ElevatedButton(
           onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const HomeScreen(),
-                ));
+            ref.read(pageProvider.notifier).state = const HomeScreen(
+              key: Key('home'),
+            );
           },
           child: const Text("Sign in"),
         ),
@@ -42,16 +41,14 @@ class AppBarComponent extends StatelessWidget with PreferredSizeWidget {
         ),
         ElevatedButton(
           onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SignupScreen(),
-                ));
+            ref.read(pageProvider.notifier).state = const SignupScreen(
+              key: Key('signup'),
+            );
           },
           child: const Text("Sign up"),
         ),
-        const SizedBox(
-          width: 800,
+        SizedBox(
+          width: size.width * 0.65,
         ),
         TextButton(
           onPressed: () {},

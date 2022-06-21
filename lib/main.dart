@@ -1,7 +1,8 @@
+import 'package:fe_tennisbooking/main_background.dart';
 import 'package:fe_tennisbooking/pages/home.dart';
-import 'package:fe_tennisbooking/pages/welcomescreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'firebase_options.dart';
 
@@ -10,7 +11,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material Apps',
-      home: Welcomescreen(),
+      home: MainBackground(),
     );
   }
 }
